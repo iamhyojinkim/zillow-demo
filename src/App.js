@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import DetailPage from "./Components/DetailPage";
+import Grid from "./Components/Grid";
+import Navbar from "./Components/Navbar";
+import { Routes, Route } from "react-router-dom";
+import { PropertyProvider } from "./Components/api/Context";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <PropertyProvider>
+        <Navbar />
+        <main>
+          <Routes>
+            <Route path="/" element={<AppContent />} />
+            <Route path="/detail/:slug" element={<DetailPage />} />
+          </Routes>
+        </main>
+      </PropertyProvider>
+    </>
+  );
+}
+
+function AppContent() {
+  return (
+    <>
+      <Grid />
+    </>
   );
 }
 
