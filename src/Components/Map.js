@@ -1,5 +1,6 @@
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 import { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Map({ locations, houses }) {
   const [selectedHouse, setSelectedHouse] = useState(null);
@@ -45,6 +46,8 @@ export default function Map({ locations, houses }) {
     )
       console.log(selectedHouse);
   }, [selectedHouse]);
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -92,7 +95,7 @@ export default function Map({ locations, houses }) {
                   scaledSize: new window.google.maps.Size(70, 70),
                 }}
                 onClick={() => {
-                  window.location.href = `/detail/${selectedHouse.slug}`;
+                  navigate(`/detail/${selectedHouse.slug}`);
                 }}
               />
             )}
